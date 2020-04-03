@@ -16,7 +16,7 @@ public class PlayerIO : MonoBehaviour
 
     private PlayerMover mover;
     public PaintGun gun;
-    
+    private int colorChangeTimer = 0;
     void Start()
     {
         mover = GetComponent<PlayerMover>();
@@ -40,7 +40,7 @@ public class PlayerIO : MonoBehaviour
         float _yRotation = Input.GetAxisRaw("Mouse X");
 
         Vector3 _rotation = new Vector3(0, _yRotation*lookSensitivity, 0);
-        mover.Rotate(_rotation);
+        mover.Rotate(_rotation);;
 
         float _xRot = Input.GetAxisRaw("Mouse Y");
         Vector3 _cameraRotation = new Vector3(_xRot, 0, 0);
@@ -48,7 +48,15 @@ public class PlayerIO : MonoBehaviour
         if (Input.GetButton("Fire1")){
             gun.Shoot();
         }
-
+        if(Input.GetButton("Fire2")){
+            if (colorChangeTimer==0){
+            gun.NextColor();
+            colorChangeTimer=30;
+            }
+        }
+        if (colorChangeTimer>0){
+            colorChangeTimer--;
+        }
     }
 
 
