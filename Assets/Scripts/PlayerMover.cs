@@ -33,9 +33,8 @@ public class PlayerMover : MonoBehaviour
         force+=_jump;
         }
     }
-     public void ApplyForce(Vector3 _force){
-        
-    force+=_force;
+    public void ApplyForce(Vector3 _force){
+        force+=_force;
         
     }
 

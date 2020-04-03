@@ -7,13 +7,15 @@ public class PlayerIO : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5f;
-    private float jumpForce = 40f;
+    [SerializeField]
+    private float jumpForce = 100f;
     [SerializeField]
     private float lookSensitivity = 5f;
     [SerializeField]
     // Start is called before the first frame update
 
     private PlayerMover mover;
+    public PaintGun gun;
     
     void Start()
     {
@@ -31,6 +33,7 @@ public class PlayerIO : MonoBehaviour
         Vector3 _movVertical = transform.forward*_zMov;
         Vector3 _velocity = (_movHorizontal+_movVertical).normalized * speed;
         mover.Move(_velocity);
+        
         float _jump = Input.GetAxisRaw("Jump");
         mover.Jump(_jump*transform.up*jumpForce);
 
@@ -42,9 +45,9 @@ public class PlayerIO : MonoBehaviour
         float _xRot = Input.GetAxisRaw("Mouse Y");
         Vector3 _cameraRotation = new Vector3(_xRot, 0, 0);
         mover.RotateCamera(_cameraRotation*lookSensitivity);
-
-  
-
+        if (Input.GetButton("Fire1")){
+            gun.Shoot();
+        }
 
     }
 
