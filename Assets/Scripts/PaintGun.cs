@@ -40,8 +40,8 @@ public class PaintGun : MonoBehaviour
           if(hit.rigidbody!= null){
           hit.rigidbody.AddForce(bulletSpawn.forward*damage);
           }
-          Debug.Log(hit.transform.gameObject.tag);
-          if(hit.transform.gameObject.tag == "Paintable")
+          
+          if(hit.transform.gameObject.CompareTag("Paintable"))
           {
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
             var go = Instantiate(Brush, hit.point+0.01f*hit.normal, rot, hit.transform);
