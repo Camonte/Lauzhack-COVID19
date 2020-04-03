@@ -18,7 +18,7 @@ public class PaintGun : MonoBehaviour
     private float BrushSize = 0.01f;
 
     private int count = 0;
-
+    
     public GameObject BrushRed;
     public GameObject BrushBlue;
     public GameObject BrushGreen;
@@ -40,9 +40,9 @@ public class PaintGun : MonoBehaviour
           if(hit.rigidbody!= null){
           hit.rigidbody.AddForce(bulletSpawn.forward*damage);
           }
-          
           if(hit.transform.gameObject.CompareTag("Paintable"))
-          {
+          { 
+            Debug.Log(hit.transform.name);
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
             var go = Instantiate(Brush, hit.point+0.01f*hit.normal, rot, hit.transform);
             go.transform.localScale = Vector3.one*BrushSize;
