@@ -14,8 +14,15 @@ public class PaintGun : MonoBehaviour
     private float range = 1000f;
     [SerializeField]
     private float recoil = 10f;
+    [SerializeField]
+    private float BrushSize = 0.01f;
 
-    public GameObject Brush;
+    private int count = 0;
+
+    public GameObject BrushRed;
+    public GameObject BrushBlue;
+    public GameObject BrushGreen;
+    private GameObject Brush;
     public Transform bulletSpawn;
     public PlayerMover player;
     // Start is called before the first frame update
@@ -24,19 +31,40 @@ public class PaintGun : MonoBehaviour
 
     public void Shoot()
     {
+      if(Brush==null){
+        NextColor();
+      }
       RaycastHit hit;
       if(Physics.Raycast(bulletSpawn.position, bulletSpawn.forward, out hit, range )){  
           
           if(hit.rigidbody!= null){
           hit.rigidbody.AddForce(bulletSpawn.forward*damage);
-
           }
+          Debug.Log(hit.transform.gameObject.tag);
+          if(hit.transform.gameObject.tag == "Paintable")
+          {
+            Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            var go = Instantiate(Brush, hit.point+0.01f*hit.normal, rot, hit.transform);
+            go.transform.localScale = Vector3.one*BrushSize;
+          }
+          
           //Quaternion.AngleAxis(-90, Vector3.right)*
-          Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
-          var go = Instantiate(Brush, hit.point+0.1f*hit.normal, rot, hit.transform);
-          Debug.Log(hit.normal);
-          go.transform.localScale = Vector3.one*0.01f;
           player.ApplyForce(-1*bulletSpawn.forward*damage*recoil/10);
       }
     }
+    public void NextColor(){
+      if (count==0){
+        Brush = BrushBlue;
+        
+      }
+      else if(count == 1){
+        Brush = BrushGreen;
+      }
+      else {
+        Brush = BrushRed;
+      }
+      count =(count+1)%3;
+    }
+    
+
 }
