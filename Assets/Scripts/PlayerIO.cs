@@ -14,6 +14,8 @@ public class PlayerIO : MonoBehaviour
     [SerializeField]
     // Start is called before the first frame update
 
+    public Animator anim;
+
     private PlayerMover mover;
     public PaintGun gun;
     private int colorChangeTimer = 0;
@@ -24,6 +26,7 @@ public class PlayerIO : MonoBehaviour
     void Start()
     {
         mover = GetComponent<PlayerMover>();
+        anim = GetComponent<Animator>();
         
     }
 
@@ -36,15 +39,21 @@ public class PlayerIO : MonoBehaviour
         Vector3 _movHorizontal = transform.right*_xMov;
         Vector3 _movVertical = transform.forward*_zMov;
         Vector3 _velocity = (_movHorizontal+_movVertical).normalized * speed;
+        anim.SetFloat("Vertical", _velocity.magnitude);
+
+        
         mover.Move(_velocity);
         
         float _jump = Input.GetAxisRaw("Jump");
+        if(_jump!=0){
+            anim.SetTrigger("Jump");
+        }
         mover.Jump(_jump*transform.up*jumpForce);
 
         float _yRotation = Input.GetAxisRaw("Mouse X");
 
         Vector3 _rotation = new Vector3(0, _yRotation*lookSensitivity, 0);
-        mover.Rotate(_rotation);;
+        mover.Rotate(_rotation);
 
         float _xRot = Input.GetAxisRaw("Mouse Y");
         Vector3 _cameraRotation = new Vector3(_xRot, 0, 0);
