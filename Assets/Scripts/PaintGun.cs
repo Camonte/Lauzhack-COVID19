@@ -29,7 +29,7 @@ public class PaintGun : MonoBehaviour
 
     // Update is called once per frame
 
-    public void Shoot()
+    public void Shoot(Vector3 delta)
     {
       if(Brush==null){
         NextColor();
@@ -41,9 +41,13 @@ public class PaintGun : MonoBehaviour
           hit.rigidbody.AddForce(bulletSpawn.forward*damage);
           }
           if(hit.transform.gameObject.CompareTag("Paintable"))
-          { 
-            Debug.Log(hit.transform.name);
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+          {
+            Debug.Log(delta);
+            Quaternion offset = Quaternion.FromToRotation(Vector3.left+Vector3.back, Vector3.right);
+            if(delta !=Vector3.zero){
+              offset = offset * Quaternion.FromToRotation(Vector3.right, delta);
+            }
+            Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal)*offset;
             var go = Instantiate(Brush, hit.point+0.01f*hit.normal, rot, hit.transform);
             go.transform.localScale = Vector3.one*BrushSize;
           }
