@@ -28,7 +28,7 @@ MonoBehaviour:
   DevRegion: 
   PunLogging: 2
   EnableSupportLogger: 0
-  RunInBackground: 1
+  RunInBackground: 0
   StartInOfflineMode: 0
   RpcList:
   - ClickRpc
@@ -37,5 +37,5 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
   DevRegionSetOnce: 0
