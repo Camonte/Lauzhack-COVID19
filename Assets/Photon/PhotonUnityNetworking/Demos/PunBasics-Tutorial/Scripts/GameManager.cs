@@ -37,7 +37,7 @@ namespace ch.epfl.LHackCOVID19
             } 
         }
 
-        public override onPlayerLeftRoom(Player other)
+        public override void OnPlayerLeftRoom(Player other)
         {
             Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
             if(PhotonNetwork.IsMasterClient)
