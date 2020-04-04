@@ -979,6 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4796bc1963eb34e1fa021b0a45b29df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   maxPlayersPerRoom: 4
   controlPanel: {fileID: 397656871}
   progressLabel: {fileID: 508995096}
@@ -1145,3 +1146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22ee30e9b2b34fe38b62e48c7d79dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  controlPanel: {fileID: 0}
+  feedbackText: {fileID: 0}
+  maxPlayersPerRoom: 4
+  loaderAnime: {fileID: 0}
+>>>>>>> 0283b2abe48e6368b43c22ec58bff18c568e0893
