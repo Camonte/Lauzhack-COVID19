@@ -33,6 +33,10 @@ namespace Photon.Pun.Demo.PunBasics
 
         #region Private Fields
 
+        [Tooltip("The Player's UI GameObject Prefab")]
+        [SerializeField]
+        private GameObject playerUiPrefab;
+
         [Tooltip("The Beams GameObject to control")]
         [SerializeField]
         private GameObject beams;
@@ -89,6 +93,17 @@ namespace Photon.Pun.Demo.PunBasics
                 Debug.LogError("<Color=Red><b>Missing</b></Color> CameraWork Component on player Prefab.", this);
             }
 
+            // Create the UI
+            if (this.playerUiPrefab != null)
+            {
+                GameObject _uiGo = Instantiate(this.playerUiPrefab);
+                _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            }
+            else
+            {
+                Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
+            }
+
             #if UNITY_5_4_OR_NEWER
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
 			UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
@@ -119,6 +134,11 @@ namespace Photon.Pun.Demo.PunBasics
             if (photonView.IsMine)
             {
                 this.ProcessInputs();
+
+                if (this.Health <= 0f)
+                {
+                    GameManager.Instance.LeaveRoom();
+                }
             }
 
             if (this.beams != null && this.IsFiring != this.beams.activeInHierarchy)
@@ -198,6 +218,9 @@ namespace Photon.Pun.Demo.PunBasics
             {
                 transform.position = new Vector3(0f, 5f, 0f);
             }
+
+            GameObject _uiGo = Instantiate(this.playerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
 
         #endregion
