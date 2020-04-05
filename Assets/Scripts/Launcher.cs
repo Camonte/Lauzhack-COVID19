@@ -29,6 +29,10 @@ namespace Photon.Pun.Demo.PunBasics
 		[SerializeField]
 		private GameObject controlPanel;
 
+		[Tooltip("The Ui Text to inform the user about the connection progress")]
+		[SerializeField]
+		private Text feedbackText;
+
 		[Tooltip("The maximum number of players per room")]
 		[SerializeField]
 		private byte maxPlayersPerRoom = 4;
@@ -84,6 +88,9 @@ namespace Photon.Pun.Demo.PunBasics
 		/// </summary>
 		public void Connect()
 		{
+			// we want to make sure the log is clear everytime we connect, we might have several failed attempted if connection failed.
+			feedbackText.text = "";
+
 			// keep track of the will to join a room, because when we come back from the game we will get a callback that we are connected, so we need to know what to do then
 			isConnecting = true;
 
@@ -118,6 +125,13 @@ namespace Photon.Pun.Demo.PunBasics
 		/// <param name="message">Message.</param>
 		void LogFeedback(string message)
 		{
+			// we do not assume there is a feedbackText defined.
+			if (feedbackText == null) {
+				return;
+			}
+
+			// add new messages as a new line and at the bottom of the log.
+			feedbackText.text += System.Environment.NewLine+message;
 		}
 
         #endregion
@@ -193,12 +207,7 @@ namespace Photon.Pun.Demo.PunBasics
 		{
 			LogFeedback("<Color=Green>OnJoinedRoom</Color> with "+PhotonNetwork.CurrentRoom.PlayerCount+" Player(s)");
 			Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running.");
-		
-			// #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
-			Debug.Log("We load the 'Room for 1' ");
-
-			// #Critical
-			// Load the Room Level. 
+			Debug.Log("We load the solo room");
 			PhotonNetwork.LoadLevel("MainScene");
 		}
 
