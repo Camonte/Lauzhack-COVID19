@@ -15,6 +15,7 @@ namespace ch.epfl.LHackCOVID19
         #region Private Fields
             string gameVersion = "1";
             bool isConnecting;
+            int roomNb;
         #endregion
 
         #region Public Fields
@@ -54,6 +55,38 @@ namespace ch.epfl.LHackCOVID19
                 PhotonNetwork.GameVersion = gameVersion;
             }
         }
+
+        public void ConnectToSolo()
+        {
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
+            roomNb = 1;
+            if(PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.JoinRandomRoom();
+            }
+            else 
+            {
+                isConnecting = PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.GameVersion = gameVersion;
+            }
+        }
+
+        public void ConnectToGroup()
+        {
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
+            roomNb = 2;
+            if(PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.JoinRandomRoom();
+            }
+            else 
+            {
+                isConnecting = PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.GameVersion = gameVersion;
+            }
+        }
         #endregion
 
         #region MonoBehaviourPunCallbacks Callbacks
@@ -81,12 +114,16 @@ namespace ch.epfl.LHackCOVID19
         }
 
         public override void OnJoinedRoom()
-        {
+        {   
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-            if(PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            if(roomNb == 1)
             {
-                Debug.Log("We load the 'Room for 1'");
+                Debug.Log("We load the solo room");
                 PhotonNetwork.LoadLevel("MainScene");
+            } else if (roomNb == 2)
+            {
+                Debug.Log("We load the group room");
+                PhotonNetwork.LoadLevel("espace de travail collectif");
             }
         }
         #endregion
