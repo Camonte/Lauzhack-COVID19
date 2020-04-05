@@ -42,7 +42,6 @@ public class PaintGun : MonoBehaviour
           }
           if(hit.transform.gameObject.CompareTag("Paintable"))
           {
-            Debug.Log(delta);
             Quaternion offset = Quaternion.FromToRotation(Vector3.left+Vector3.back, Vector3.right);
             if(delta !=Vector3.zero){
               offset = offset * Quaternion.FromToRotation(Vector3.right, delta);
@@ -51,7 +50,9 @@ public class PaintGun : MonoBehaviour
             var go = Instantiate(Brush, hit.point+0.01f*hit.normal, rot, hit.transform);
             go.transform.localScale = Vector3.one*BrushSize;
           }
-          
+          if(hit.transform.gameObject.CompareTag("Destructable")){
+            hit.transform.gameObject.GetComponent<Destructable>().Destruct();
+          }
           //Quaternion.AngleAxis(-90, Vector3.right)*
           player.ApplyForce(-1*bulletSpawn.forward*damage*recoil/10);
       }
