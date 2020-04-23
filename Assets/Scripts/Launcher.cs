@@ -35,7 +35,7 @@ namespace Photon.Pun.Demo.PunBasics
 
 		[Tooltip("The maximum number of players per room")]
 		[SerializeField]
-		private byte maxPlayersPerRoom = 4;
+		private byte maxPlayersPerRoom = 5;
 
 		[Tooltip("The UI Loader Anime")]
 		[SerializeField]
@@ -65,11 +65,7 @@ namespace Photon.Pun.Demo.PunBasics
 		/// </summary>
 		void Awake()
 		{
-			if (loaderAnime==null)
-			{
-				Debug.LogError("<Color=Red><b>Missing</b></Color> loaderAnime Reference.",this);
-			}
-
+			PhotonNetwork.NickName = "User" + Random.Range(100, 900);
 			// #Critical
 			// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
 			PhotonNetwork.AutomaticallySyncScene = true;
