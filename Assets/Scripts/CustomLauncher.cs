@@ -56,12 +56,11 @@ namespace Photon.Pun.Demo.PunBasics
 
 			if (PhotonNetwork.IsConnected)
 			{
-				LogFeedback("Joining Room...");
-                RoomOptions roomOptions = new RoomOptions();
-                roomOptions.IsVisible = false;
-                roomOptions.MaxPlayers = maxPlayersPerRoom;
-                PhotonNetwork.JoinOrCreateRoom("MainScene", roomOptions, TypedLobby.Default);
-
+				if(PhotonNetwork.IsMasterClient){
+					OnConnectedToMaster();
+				} else {
+					PhotonNetwork.JoinRoom("MainScene");
+				}
 			}else{
 				LogFeedback("Connecting...");				
 			    PhotonNetwork.GameVersion = this.gameVersion;
@@ -91,7 +90,7 @@ namespace Photon.Pun.Demo.PunBasics
 				RoomOptions roomOptions = new RoomOptions();
                 roomOptions.IsVisible = false;
                 roomOptions.MaxPlayers = maxPlayersPerRoom;
-                PhotonNetwork.JoinOrCreateRoom("MainScene", roomOptions, TypedLobby.Default);
+                PhotonNetwork.CreateRoom("MainScene", roomOptions, TypedLobby.Default);
 			}
 		}
 
