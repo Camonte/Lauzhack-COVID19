@@ -106,9 +106,14 @@ namespace Photon.Pun.Demo.PunBasics
 		public override void OnCreatedRoom()
 		{
 			LogFeedback("<Color=Green>OnJoinedRoom</Color> with "+PhotonNetwork.CurrentRoom.PlayerCount+" Player(s)");
-			Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running.");
+			Debug.Log("OnCreatedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running.");
 			Debug.Log("We load a new room");
 			PhotonNetwork.LoadLevel("MainScene");
+		}
+
+		public override void OnJoinedRoom()
+		{
+			
 		}
 
 		#endregion
