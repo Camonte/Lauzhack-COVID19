@@ -134,8 +134,8 @@ namespace BachelorProject
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            Debug.Log("We load the KyleTest scene");
-            PhotonNetwork.LoadLevel("KyleTest");
+            Debug.Log("We load the MainSceneTest scene");
+            PhotonNetwork.LoadLevel("MainSceneTest");
         }
     }
 
