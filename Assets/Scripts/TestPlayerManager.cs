@@ -9,7 +9,6 @@ namespace BachelorProject
 {
     /// <summary>
     /// Player manager.
-    /// Handles fire Input and Beams.
     /// </summary>
     public class TestPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {

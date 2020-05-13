@@ -716,6 +716,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6199914279019268637, guid: 5e658327e2dc44627bee6209c7e77901,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[0].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6199914279019268637, guid: 5e658327e2dc44627bee6209c7e77901,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[1].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6199914279019268639, guid: 5e658327e2dc44627bee6209c7e77901,
         type: 3}
       propertyPath: viewIdField
