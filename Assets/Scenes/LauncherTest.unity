@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 955527582}
   - component: {fileID: 955527581}
   m_Layer: 5
-  m_Name: Play Button
+  m_Name: Connect Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
