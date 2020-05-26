@@ -44,7 +44,7 @@ namespace BachelorProject
         /// </summary>
         public void Start()
         {
-            TestCameraWork _cameraWork = gameObject.GetComponent<TestCameraWork>();
+            /**TestCameraWork _cameraWork = gameObject.GetComponent<TestCameraWork>();
 
             if (_cameraWork != null)
             {
@@ -56,7 +56,7 @@ namespace BachelorProject
             else
             {
                 Debug.LogError("<Color=Red><b>Missing</b></Color> CameraWork Component on player Prefab.", this);
-            }
+            }**/
 
             #if UNITY_5_4_OR_NEWER
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
