@@ -41,6 +41,8 @@ namespace BachelorProject
         /// </summary>
         bool isConnecting;
 
+        //string joinedRoom = "";
+
         #endregion
 
 
@@ -88,6 +90,8 @@ namespace BachelorProject
             {
                 // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
                 PhotonNetwork.JoinRandomRoom();
+                //joinedRoom = "MainScene";
+                //PhotonNetwork.JoinOrCreateRoom("MainScene", new RoomOptions { MaxPlayers = maxPlayersPerRoom }, TypedLobby.Default);
             }
             else
             {
@@ -96,6 +100,26 @@ namespace BachelorProject
                 PhotonNetwork.GameVersion = gameVersion;
             }
         }
+
+        /**public void ConnectToOutdoorRoom()
+        {
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
+            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
+            if (PhotonNetwork.IsConnected)
+            {
+                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
+                //PhotonNetwork.JoinRandomRoom();
+                joinedRoom = "OutdoorScene";
+                PhotonNetwork.JoinOrCreateRoom("OutdoorScene", new RoomOptions { MaxPlayers = maxPlayersPerRoom }, TypedLobby.Default);
+            }
+            else
+            {
+                // #Critical, we must first and foremost connect to Photon Online Server.
+                isConnecting = PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.GameVersion = gameVersion;
+            }
+        }**/
 
 
     #endregion
@@ -106,10 +130,14 @@ namespace BachelorProject
     public override void OnConnectedToMaster()
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
-        if(isConnecting){
-            PhotonNetwork.JoinRandomRoom();
-            isConnecting = false;
-        }
+        /**while(isConnecting == true){
+            if(joinedRoom != null){
+                PhotonNetwork.JoinOrCreateRoom(joinedRoom, new RoomOptions { MaxPlayers = maxPlayersPerRoom }, TypedLobby.Default);
+                isConnecting = false;
+            }
+        }**/
+        PhotonNetwork.JoinRandomRoom();
+        isConnecting = false;
     }
 
 
@@ -136,6 +164,13 @@ namespace BachelorProject
         {
             Debug.Log("We load the MainScene -");
             PhotonNetwork.LoadLevel("MainScene");
+            /**if(joinedRoom == "MainScene"){
+                Debug.Log("We load the MainScene -");
+                PhotonNetwork.LoadLevel("MainScene");
+            } else if(joinedRoom == "OutdoorScene"){
+                Debug.Log("We load the Outdoor SCene -");
+                PhotonNetwork.LoadLevel("OutdoorScene");
+            }**/
         }
     }
 

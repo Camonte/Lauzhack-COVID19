@@ -9,15 +9,21 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
+using ExitGames.Client.Photon;
+
 
 namespace BachelorProject
 {
-    public class CustomGameManager : MonoBehaviourPunCallbacks
+    public class CustomGameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMatchmakingCallbacks, IOnEventCallback
     {
         #region Public Fields
 
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
+
+        public GameObject ovrController;
+
+        public const byte InstantiateVrAvatarEventCode = 1;
 
         #endregion
 
@@ -40,7 +46,7 @@ namespace BachelorProject
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-                LoadArena();
+                //LoadArena();
             }
         }
 
@@ -68,10 +74,62 @@ namespace BachelorProject
                 }
             }
         }
+
+        public override void OnJoinedRoom()
+        {
+            GameObject localAvatar = Instantiate(Resources.Load("LocalAvatar")) as GameObject;
+            PhotonView photonView = localAvatar.GetComponent<PhotonView>();
+            PhotonView ovrPhotonView = ovrController.GetComponent<PhotonView>();
+
+            if (PhotonNetwork.AllocateViewID(photonView))
+            {
+                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+                {
+                    CachingOption = EventCaching.AddToRoomCache,
+                    Receivers = ReceiverGroup.Others
+                };
+
+                PhotonNetwork.RaiseEvent(InstantiateVrAvatarEventCode, photonView.ViewID, raiseEventOptions, SendOptions.SendReliable);
+            }
+            else
+            {
+                Debug.LogError("Failed to allocate a ViewId.");
+
+                Destroy(localAvatar);
+            }
+
+            if (PhotonNetwork.AllocateViewID(ovrPhotonView))
+            {
+                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+                {
+                    CachingOption = EventCaching.AddToRoomCache,
+                    Receivers = ReceiverGroup.Others
+                };
+
+                PhotonNetwork.RaiseEvent(InstantiateVrAvatarEventCode, ovrPhotonView.ViewID, raiseEventOptions, SendOptions.SendReliable);
+            }
+            else
+            {
+                Debug.LogError("Failed to allocate a ViewId.");
+
+                Destroy(ovrController);
+            }
+        }
+
         #endregion
 
 
         #region Public Methods
+
+        void IOnEventCallback.OnEvent(EventData photonEvent)
+        {
+            if (photonEvent.Code == InstantiateVrAvatarEventCode)
+            {
+                GameObject remoteAvatar = Instantiate(Resources.Load("RemoteAvatar")) as GameObject;
+                PhotonView photonView = remoteAvatar.GetComponent<PhotonView>();
+                photonView.ViewID = (int) photonEvent.CustomData;
+            }
+        }
 
         public void LeaveRoom()
         {

@@ -90,7 +90,7 @@ namespace BachelorProject
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
             }
             Debug.LogFormat("PhotonNetwork : Loading MainSceneTest");
-            PhotonNetwork.LoadLevel("MainSceneTest");
+            PhotonNetwork.LoadLevel("MainSceneDestkop");
         }
 
         #endregion

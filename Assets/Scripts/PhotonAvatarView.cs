@@ -62,7 +62,8 @@ public class PhotonAvatarView : MonoBehaviour, IPunObservable
             int num = (int)stream.ReceiveNext();
             for (int counter = 0; counter < num; ++counter)
             {
-                byte[] data = (byte[])stream.ReceiveNext(); DeserializeAndQueuePacketData(data);
+                byte[] data = (byte[])stream.ReceiveNext();
+                DeserializeAndQueuePacketData(data);
             } 
         }
     }

@@ -14,7 +14,7 @@ namespace BachelorProject
         private Animator animator;
 
         [SerializeField]
-        private float directionDampTime = 0.25f;
+        private float directionDampTime = 0.10f;
 
         #endregion
 

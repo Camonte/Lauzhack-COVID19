@@ -135,7 +135,7 @@ namespace BachelorProject
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             Debug.Log("We load the MainSceneTest scene");
-            PhotonNetwork.LoadLevel("MainSceneTest");
+            PhotonNetwork.LoadLevel("MainSceneDesktop");
         }
     }
 
