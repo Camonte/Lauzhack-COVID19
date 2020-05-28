@@ -60,7 +60,7 @@ namespace DesktopProject
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-                LoadArena();
+                //LoadArena();
             }
         }
 
@@ -70,7 +70,7 @@ namespace DesktopProject
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-                LoadArena();
+                //LoadArena();
             }
         }
         #endregion
