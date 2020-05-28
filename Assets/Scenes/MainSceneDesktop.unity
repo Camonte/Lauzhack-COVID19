@@ -15363,6 +15363,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5505058996438208482, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5559151180933814966, guid: 05a97f2ba4934402a93ed68e6da5f999,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15425,11 +15430,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5563699423052403340, guid: 05a97f2ba4934402a93ed68e6da5f999,
         type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563699423052403340, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5563699423052403340, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 5563699422678223424}
+    - target: {fileID: 5563699423052403341, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[0].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563699423052403341, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[1].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563699423052403341, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[2].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563699423052403341, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[3].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563699423052403341, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[4].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563699423052403341, guid: 05a97f2ba4934402a93ed68e6da5f999,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[5].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a97f2ba4934402a93ed68e6da5f999, type: 3}
+--- !u!114 &5563699422678223424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5563699423052403339, guid: 05a97f2ba4934402a93ed68e6da5f999,
+    type: 3}
+  m_PrefabInstance: {fileID: 5563699422678223423}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824339730068493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1acbd137cf664a5aaa22d0e731db1c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6027810494392738865
 PrefabInstance:
   m_ObjectHideFlags: 0
