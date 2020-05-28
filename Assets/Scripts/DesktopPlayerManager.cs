@@ -11,15 +11,11 @@ namespace DesktopProject
     /// Player manager.
     /// Handles fire Input and Beams.
     /// </summary>
-    public class DesktopPlayerManager : MonoBehaviourPunCallbacks
+    public class DesktopPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         #region Public Fields
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
-
-        [Tooltip("The Player's UI GameObject Prefab")]
-        [SerializeField]
-        public GameObject PlayerUiPrefab;
         #endregion
 
 
@@ -33,7 +29,7 @@ namespace DesktopProject
             // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
             if (photonView.IsMine)
             {
-                DesktopPlayerManager.LocalPlayerInstance = this.gameObject;
+                LocalPlayerInstance = this.gameObject;
             }
             // #Critical
             // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
@@ -45,7 +41,7 @@ namespace DesktopProject
         /// </summary>
         void Start()
         {
-            DesktopCameraWork _cameraWork = this.gameObject.GetComponent<DesktopCameraWork>();
+            DesktopCameraWork _cameraWork = gameObject.GetComponent<DesktopCameraWork>();
             if (_cameraWork != null)
             {
                 if (photonView.IsMine)
@@ -57,15 +53,17 @@ namespace DesktopProject
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
             }
-            if (PlayerUiPrefab != null)
-            {
-                GameObject _uiGo =  Instantiate(PlayerUiPrefab);
-                _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
-            }
-            else
-            {
-                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
-            }
+            #if UNITY_5_4_OR_NEWER
+                UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            #endif
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            #if UNITY_5_4_OR_NEWER
+                UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+            #endif
         }
 
         /// <summary>
@@ -74,11 +72,36 @@ namespace DesktopProject
         void Update()
         {
         }
+
+        #if !UNITY_5_4_OR_NEWER
+        void OnLevelWasLoaded(int level)
+        {
+            this.CalledOnLevelWasLoaded(level);
+        }
+        #endif
         
         void CalledOnLevelWasLoaded(int level)
         {
-            GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            if(!Physics.Raycast(transform.position, -Vector3.up, 5f))
+            {
+                transform.position = new Vector3(0f, 5f, 0f);
+            }
+        }
+        #endregion
+
+
+        #region Private Methods
+        #if UNITY_5_4_OR_NEWER
+        void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
+        {
+            this.CalledOnLevelWasLoaded(scene.buildIndex);
+        }
+        #endif
+        #endregion
+
+        #region IPunObservable implementation
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
         }
         #endregion
     }

@@ -107,6 +107,7 @@ namespace DesktopProject
         {
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
+            isConnecting = false;
             Debug.LogWarningFormat("DesktopLauncher: OnDisconnected() was called by PUN with reason {0}", cause);
         }
 
@@ -120,8 +121,10 @@ namespace DesktopProject
         public override void OnJoinedRoom()
         {
             Debug.Log("DesktopLauncher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-            Debug.Log("We load the MainSceneDesktop");
-            PhotonNetwork.LoadLevel("MainSceneDesktop");
+            if(PhotonNetwork.CurrentRoom.PlayerCount == 1){     // WARNING HERE : DEBUG FEATURE
+                Debug.Log("We load the MainSceneDesktop");
+                PhotonNetwork.LoadLevel("MainSceneDesktop");
+            }
         }
         #endregion
     }

@@ -49,7 +49,8 @@ namespace DesktopProject
         /// </summary>
         public override void OnLeftRoom()
         {
-            SceneManager.LoadScene(0);
+            Debug.LogFormat("OnLeftRoom method called");
+            SceneManager.LoadScene("DesktopLauncher");
         }
 
         public override void OnPlayerEnteredRoom(Player other)
@@ -77,6 +78,7 @@ namespace DesktopProject
         #region Public Methods
         public void LeaveRoom()
         {
+            Debug.LogFormat("LeaveRoom method was called");
             PhotonNetwork.LeaveRoom();
         }
         #endregion
