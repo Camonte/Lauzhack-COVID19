@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Photon.Realtime;
 using Photon.Pun;
 
 
@@ -8,15 +9,14 @@ namespace DesktopProject
     public class DesktopPlayerAnimatorManager : MonoBehaviourPun
     {
         #region Private Fields
+        private Animator animator;
+
         [SerializeField]
-        private float directionDampTime = 0.6f;
+        private float directionDampTime = 0.25f;
         #endregion
 
 
         #region MonoBehaviour Callbacks
-        // Use this for initialization
-        private Animator animator;
-        
         void Start()
         {
             animator = GetComponent<Animator>();

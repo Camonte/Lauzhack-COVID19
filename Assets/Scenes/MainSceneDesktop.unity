@@ -15699,6 +15699,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1997952846207731}
   - {fileID: 1997952846207733}
+  - {fileID: 1997952846207734}
   viewIdField: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -15744,8 +15745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9812350dd6f834bffa7f0681c18bf598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerUiPrefab: {fileID: 9140593204781672670, guid: 7c37f228366584c9b996dec861d525e4,
-    type: 3}
 --- !u!1001 &7129154421962262312
 PrefabInstance:
   m_ObjectHideFlags: 0
