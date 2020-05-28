@@ -6908,6 +6908,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1027421949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2772912635942500947, guid: 92f6f4bcec8ae4b2191e882cd9d43fd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 72722395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1035163565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10856,7 +10862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5aab47672914940ba70a270a04ad9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 1027421949}
 --- !u!1001 &1469401179
 PrefabInstance:
   m_ObjectHideFlags: 0
