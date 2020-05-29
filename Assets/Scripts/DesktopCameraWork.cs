@@ -110,9 +110,8 @@ namespace DesktopProject
 
 		void Follow()
 		{
-			//cameraTransform.position = Vector3.Lerp(cameraTransform.position, new Vector3(this.transform.position.x, 3.0f, this.transform.position.z), smoothSpeed*Time.deltaTime);
 			cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
-			cameraTransform.rotation = this.transform.rotation;
+			cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, this.transform.rotation, smoothSpeed*Time.deltaTime);
 	    }
 
 		void Cut()
