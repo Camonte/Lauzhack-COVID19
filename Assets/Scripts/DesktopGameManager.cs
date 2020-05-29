@@ -28,7 +28,6 @@ namespace DesktopProject
             }
             else
             {
-                Debug.Log(DesktopPlayerManager.LocalPlayerInstance);
                 if (DesktopPlayerManager.LocalPlayerInstance == null)
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);

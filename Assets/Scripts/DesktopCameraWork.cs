@@ -28,10 +28,6 @@ namespace DesktopProject
 	    [SerializeField]
 	    private float smoothSpeed = 0.125f;
 
-		/**[Tooltip("The target to follow")]
-	    [SerializeField]
-	    GameObject head;**/
-
         // cached transform of the target
         Transform cameraTransform;
 
@@ -91,7 +87,7 @@ namespace DesktopProject
 		/// <summary>
 		/// Follow the target smoothly
 		/// </summary>
-		/**void Follow()
+		void Follow()
 		{
 			cameraOffset.z = -distance;
 			cameraOffset.y = height;
@@ -110,9 +106,9 @@ namespace DesktopProject
 			cameraTransform.position = this.transform.position + this.transform.TransformVector(cameraOffset);
 
 			cameraTransform.LookAt(this.transform.position + centerOffset);
-		}**/
+		}
 
-		void Follow()
+		/**void Follow()
 		{
 			//cameraTransform.position = Vector3.Lerp(cameraTransform.position, new Vector3(this.transform.position.x, 3.0f, this.transform.position.z), smoothSpeed*Time.deltaTime);
 			cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
@@ -123,7 +119,7 @@ namespace DesktopProject
 		{
 			cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
 			cameraTransform.rotation = this.transform.rotation;
-		}
+		}**/
 		#endregion
 	}
 }
