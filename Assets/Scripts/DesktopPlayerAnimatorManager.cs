@@ -15,6 +15,14 @@ namespace DesktopProject
         private float directionDampTime = 0.1f;
         #endregion
 
+        #region Public Fields
+        public float sensitivityX = 15F;
+	    public float sensitivityY = 15F;
+
+	    public float minimumX = -360F;
+	    public float maximumX = 360F;
+        #endregion
+
 
         #region MonoBehaviour Callbacks
         void Start()
@@ -45,6 +53,7 @@ namespace DesktopProject
             }
             animator.SetFloat("Speed", (h * h + v * v));
             animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+            transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
 
             /**float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
