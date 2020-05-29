@@ -12,7 +12,7 @@ namespace DesktopProject
         private Animator animator;
 
         [SerializeField]
-        private float directionDampTime = 0.25f;
+        private float directionDampTime = 0.1f;
         #endregion
 
 
@@ -43,8 +43,14 @@ namespace DesktopProject
             {
                 v = 0;
             }
-            animator.SetFloat("Speed", h * h + v * v);
+            animator.SetFloat("Speed", (h * h + v * v));
             animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+
+            /**float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+
+            animator.SetFloat("Speed", v);
+            animator.SetFloat("Direction", h);**/
         }
         #endregion
     }

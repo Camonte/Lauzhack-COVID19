@@ -18,6 +18,11 @@ namespace DesktopProject
         public static GameObject LocalPlayerInstance;
         #endregion
 
+        #region Private Fields
+        [SerializeField]
+        private GameObject mesh;
+        #endregion
+
 
         #region MonoBehaviour CallBacks
         /// <summary>
@@ -30,6 +35,8 @@ namespace DesktopProject
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = this.gameObject;
+                SkinnedMeshRenderer m = mesh.GetComponent<SkinnedMeshRenderer>();
+                m.enabled = false;
             }
             // #Critical
             // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
