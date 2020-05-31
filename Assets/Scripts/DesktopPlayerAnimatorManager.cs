@@ -28,7 +28,6 @@ namespace DesktopProject
         void Start()
         {
             animator = GetComponent<Animator>();
-            animator.speed = 0.6f;
             if (!animator)
             {
                 Debug.LogError("PlayerAnimatorManager is Missing Animator Component", this);
@@ -46,14 +45,14 @@ namespace DesktopProject
             {
                 return;
             }
-            float h = Input.GetAxis("Horizontal");
+            //float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
             if (v < 0)
             {
                 v = 0;
             }
-            animator.SetFloat("Speed", (h*h + v*v));
-            animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+            animator.SetFloat("Speed", v);
+            //animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
 
             /**float h = Input.GetAxis("Horizontal");
@@ -64,6 +63,18 @@ namespace DesktopProject
             }
             animator.SetFloat("Speed", v*v);
             animator.SetFloat("Direction", h);**/
+        }
+
+        void OnAnimatorMove()
+        {
+            if (animator)
+            {
+                /**Vector3 newPosition = transform.position;
+                newPosition += transform.forward;
+                newPosition.x += animator.GetFloat("Speed") * Time.deltaTime; 
+                newPosition.z += animator.GetFloat("Speed") * Time.deltaTime;**/
+                transform.position += 3.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed");
+            }
         }
         #endregion
     }

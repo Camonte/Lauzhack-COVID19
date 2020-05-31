@@ -9,7 +9,6 @@ namespace DesktopProject
 {
     /// <summary>
     /// Player manager.
-    /// Handles fire Input and Beams.
     /// </summary>
     public class DesktopPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
