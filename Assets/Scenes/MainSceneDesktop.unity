@@ -15682,6 +15682,16 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6623118654980423382, guid: 2089fb717b8624462805928f4708218f,
+        type: 3}
+      propertyPath: m_SynchronizeLayers.Array.data[0].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623118654980423382, guid: 2089fb717b8624462805928f4708218f,
+        type: 3}
+      propertyPath: ShowParameterInspector
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2089fb717b8624462805928f4708218f, type: 3}
 --- !u!1 &5126644867788824957 stripped

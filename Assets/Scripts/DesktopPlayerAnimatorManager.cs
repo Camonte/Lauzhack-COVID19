@@ -28,6 +28,7 @@ namespace DesktopProject
         void Start()
         {
             animator = GetComponent<Animator>();
+            transform.position = new Vector3(0, 0, 0);
             if (!animator)
             {
                 Debug.LogError("PlayerAnimatorManager is Missing Animator Component", this);
