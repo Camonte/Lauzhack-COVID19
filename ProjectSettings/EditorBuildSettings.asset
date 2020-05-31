@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DesktopLauncher.unity
     guid: e272dd970e02e47fbb55c81d5ae3757d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainSceneDesktop.unity
     guid: 293375f8c7f684c4bb51c629140b2773
   - enabled: 0
@@ -44,7 +44,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Oculus/VR/Scenes/Room.unity
     guid: 54445976c1dbf1c49bb38ba7eba558e8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/OutdoorScene.unity
     guid: 34a1b87a2209e43f791006446d5e8f43
   m_configObjects: {}

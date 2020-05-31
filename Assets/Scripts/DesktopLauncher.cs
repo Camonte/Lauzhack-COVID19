@@ -123,8 +123,8 @@ namespace DesktopProject
             Debug.Log("DesktopLauncher: OnJoinedRoom() called by PUN. Now this client is in a room.");
             /**if(PhotonNetwork.CurrentRoom.PlayerCount == 1) // WARNING HERE : DEBUG FEATURE
             {**/
-                Debug.Log("We load the MainSceneDesktop");
-                PhotonNetwork.LoadLevel("MainSceneDesktop");
+                Debug.Log("We load the OutdoorScene");
+                PhotonNetwork.LoadLevel("OutdoorScene");
             //}
         }
         #endregion

@@ -74,7 +74,7 @@ namespace DesktopProject
                 newPosition += transform.forward;
                 newPosition.x += animator.GetFloat("Speed") * Time.deltaTime; 
                 newPosition.z += animator.GetFloat("Speed") * Time.deltaTime;**/
-                transform.position += 3.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed");
+                transform.position += 5.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed");
             }
         }
         #endregion
