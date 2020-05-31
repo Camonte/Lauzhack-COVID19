@@ -8,7 +8,7 @@ namespace DesktopProject
 	public class DesktopCameraWork : MonoBehaviour
 	{
         #region Private Fields
-	    [Tooltip("The distance in the local x-z plane to the target")]
+	    /**[Tooltip("The distance in the local x-z plane to the target")]
 	    [SerializeField]
 	    private float distance = 7.0f;
 	    
@@ -18,7 +18,7 @@ namespace DesktopProject
 	    
 	    [Tooltip("Allow the camera to be offseted vertically from the target, for example giving more view of the sceneray and less ground.")]
 	    [SerializeField]
-	    private Vector3 centerOffset = Vector3.zero;
+	    private Vector3 centerOffset = Vector3.zero;**/
 
 	    [Tooltip("Set this as false if a component of a prefab being instanciated by Photon Network, and manually call OnStartFollowing() when and if needed.")]
 	    [SerializeField]
@@ -35,7 +35,7 @@ namespace DesktopProject
 		bool isFollowing;
 		
 		// Cache for camera offset
-		Vector3 cameraOffset = Vector3.zero;
+		//Vector3 cameraOffset = Vector3.zero;
         #endregion
 
 
@@ -62,7 +62,7 @@ namespace DesktopProject
 			}
 			// only follow is explicitly declared
 			if (isFollowing) {
-				Follow ();
+				Follow();
 			}
 		}
 		#endregion
