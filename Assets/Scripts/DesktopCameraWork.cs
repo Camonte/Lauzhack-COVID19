@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
 namespace DesktopProject
 {
 	/// <summary>
 	/// Camera work. Follow a target
 	/// </summary>
-	public class DesktopCameraWork : MonoBehaviour
+	public class DesktopCameraWork : MonoBehaviourPun
 	{
         #region Private Fields
 	    /**[Tooltip("The distance in the local x-z plane to the target")]
@@ -110,14 +111,18 @@ namespace DesktopProject
 
 		void Follow()
 		{
-			cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
-			cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, this.transform.rotation, smoothSpeed*Time.deltaTime);
+			if(photonView.IsMine){
+				cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
+				cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, this.transform.rotation, smoothSpeed*Time.deltaTime);
+			}
 	    }
 
 		void Cut()
 		{
-			cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
-			cameraTransform.rotation = this.transform.rotation;
+			if(photonView.IsMine){
+				cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
+				cameraTransform.rotation = this.transform.rotation;
+			}
 		}
 		#endregion
 	}
