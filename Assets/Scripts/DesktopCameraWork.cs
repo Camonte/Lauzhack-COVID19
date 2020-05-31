@@ -113,7 +113,8 @@ namespace DesktopProject
 		{
 			if(photonView.IsMine){
 				cameraTransform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
-				cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, this.transform.rotation, smoothSpeed*Time.deltaTime);
+				//cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, this.transform.rotation, smoothSpeed*Time.deltaTime);
+				cameraTransform.rotation = this.transform.rotation;
 			}
 	    }
 
