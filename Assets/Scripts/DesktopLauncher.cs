@@ -29,6 +29,8 @@ namespace DesktopProject
         /// Typically this is used for the OnConnectedToMaster() callback.
         /// </summary>
         bool isConnecting;
+
+        string joinedRoom;
         #endregion
 
 
@@ -72,8 +74,28 @@ namespace DesktopProject
         /// - If already connected, we attempt joining a random room
         /// - if not yet connected, Connect this application instance to Photon Cloud Network
         /// </summary>
-        public void Connect()
+        public void ConnectToOutdoor()
         {
+            joinedRoom = "OutdoorScene";
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
+            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
+            if (PhotonNetwork.IsConnected)
+            {
+                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
+                PhotonNetwork.JoinRandomRoom();
+            }
+            else
+            {
+                // #Critical, we must first and foremost connect to Photon Online Server.
+                isConnecting = PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.GameVersion = gameVersion;
+            }
+        }
+
+        public void ConnectToIndoor()
+        {
+            joinedRoom = "MainSceneDesktop";
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
@@ -123,8 +145,13 @@ namespace DesktopProject
             Debug.Log("DesktopLauncher: OnJoinedRoom() called by PUN. Now this client is in a room.");
             /**if(PhotonNetwork.CurrentRoom.PlayerCount == 1) // WARNING HERE : DEBUG FEATURE
             {**/
+            if(joinedRoom == "OutdoorScene"){
                 Debug.Log("We load the OutdoorScene");
                 PhotonNetwork.LoadLevel("OutdoorScene");
+            } else if (joinedRoom == "MainSceneDesktop"){
+                Debug.Log("We load the MainSceneDesktop");
+                PhotonNetwork.LoadLevel("MainSceneDesktop");
+            }
             //}
         }
         #endregion
