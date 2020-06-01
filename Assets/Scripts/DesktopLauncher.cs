@@ -120,7 +120,7 @@ namespace DesktopProject
             Debug.Log("DesktopLauncher: OnConnectedToMaster() was called by PUN");
             if(isConnecting){
                 // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
-                PhotonNetwork.JoinRandomRoom();
+                PhotonNetwork.JoinRoom(joinedRoom);
                 isConnecting = false;
             }
         }
@@ -133,11 +133,11 @@ namespace DesktopProject
             Debug.LogWarningFormat("DesktopLauncher: OnDisconnected() was called by PUN with reason {0}", cause);
         }
 
-        public override void OnJoinRandomFailed(short returnCode, string message)
+        public override void OnJoinRoomFailed(short returnCode, string message)
         {
             Debug.Log("DesktopLauncher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
             // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
-            PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
+            PhotonNetwork.CreateRoom(joinedRoom, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
 
         public override void OnJoinedRoom()
