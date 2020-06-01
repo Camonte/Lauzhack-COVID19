@@ -83,7 +83,7 @@ namespace DesktopProject
             if (PhotonNetwork.IsConnected)
             {
                 // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
-                PhotonNetwork.JoinRandomRoom();
+                PhotonNetwork.JoinRoom("OutdoorScene");
             }
             else
             {
@@ -102,7 +102,7 @@ namespace DesktopProject
             if (PhotonNetwork.IsConnected)
             {
                 // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
-                PhotonNetwork.JoinRandomRoom();
+                PhotonNetwork.JoinRoom("MainSceneDesktop");
             }
             else
             {
