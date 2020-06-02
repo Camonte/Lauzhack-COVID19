@@ -35,7 +35,7 @@ namespace Photon.Pun.Demo.PunBasics
 
 		[Tooltip("The maximum number of players per room")]
 		[SerializeField]
-		private byte maxPlayersPerRoom = 5;
+		private byte maxPlayersPerRoom = 4;
 
 		[Tooltip("The UI Loader Anime")]
 		[SerializeField]
@@ -65,7 +65,11 @@ namespace Photon.Pun.Demo.PunBasics
 		/// </summary>
 		void Awake()
 		{
-			PhotonNetwork.NickName = "User" + Random.Range(100, 900);
+			if (loaderAnime==null)
+			{
+				Debug.LogError("<Color=Red><b>Missing</b></Color> loaderAnime Reference.",this);
+			}
+
 			// #Critical
 			// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
 			PhotonNetwork.AutomaticallySyncScene = true;
@@ -203,8 +207,17 @@ namespace Photon.Pun.Demo.PunBasics
 		{
 			LogFeedback("<Color=Green>OnJoinedRoom</Color> with "+PhotonNetwork.CurrentRoom.PlayerCount+" Player(s)");
 			Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running.");
-			Debug.Log("We load the solo room");
-			PhotonNetwork.LoadLevel("MainScene");
+		
+			// #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
+			if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+			{
+				Debug.Log("We load the 'Room for 1' ");
+
+				// #Critical
+				// Load the Room Level. 
+				PhotonNetwork.LoadLevel("PunBasics-Room for 1");
+
+			}
 		}
 
 		#endregion

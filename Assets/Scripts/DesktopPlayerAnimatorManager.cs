@@ -10,7 +10,8 @@ namespace DesktopProject
     {
         #region Private Fields
         private Animator animator;
-
+        private CharacterController controller;
+        
         [SerializeField]
         private float directionDampTime = 0.1f;
         #endregion
@@ -28,6 +29,7 @@ namespace DesktopProject
         void Start()
         {
             animator = GetComponent<Animator>();
+            controller = GetComponent<CharacterController>();
             transform.position = new Vector3(0, 0, 0);
             if (!animator)
             {
@@ -74,7 +76,8 @@ namespace DesktopProject
                 newPosition += transform.forward;
                 newPosition.x += animator.GetFloat("Speed") * Time.deltaTime; 
                 newPosition.z += animator.GetFloat("Speed") * Time.deltaTime;**/
-                transform.position += 5.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed");
+                //transform.position += 5.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed");
+                controller.Move(5.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed"));
             }
         }
         #endregion

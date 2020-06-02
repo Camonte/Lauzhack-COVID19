@@ -31,8 +31,8 @@ namespace Photon.Pun
         private Quaternion m_NetworkRotation;
 
         public bool m_SynchronizePosition = true;
-        //public bool m_SynchronizeRotation = true;
-        //public bool m_SynchronizeScale = false;
+        public bool m_SynchronizeRotation = true;
+        public bool m_SynchronizeScale = false;
 
         bool m_firstTake = false;
 
@@ -73,15 +73,15 @@ namespace Photon.Pun
                     stream.SendNext(this.m_Direction);
                 }
 
-                //if (this.m_SynchronizeRotation)
-                //{
+                if (this.m_SynchronizeRotation)
+                {
                     stream.SendNext(transform.rotation);
-                //}
+                }
 
-                //if (this.m_SynchronizeScale)
-                //{
+                if (this.m_SynchronizeScale)
+                {
                     stream.SendNext(transform.localScale);
-                //}
+                }
             }
             else
             {
@@ -107,8 +107,8 @@ namespace Photon.Pun
                    
                 }
 
-                //if (this.m_SynchronizeRotation)
-                //{
+                if (this.m_SynchronizeRotation)
+                {
                     this.m_NetworkRotation = (Quaternion)stream.ReceiveNext();
 
                     if (m_firstTake)
@@ -120,12 +120,12 @@ namespace Photon.Pun
                     {
                         this.m_Angle = Quaternion.Angle(transform.rotation, this.m_NetworkRotation);
                     }
-                //}
+                }
 
-                //if (this.m_SynchronizeScale)
-                //{
+                if (this.m_SynchronizeScale)
+                {
                     transform.localScale = (Vector3)stream.ReceiveNext();
-                //}
+                }
 
                 if (m_firstTake)
                 {
