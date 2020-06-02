@@ -548,6 +548,8 @@ GameObject:
   - component: {fileID: 95318394}
   - component: {fileID: 95318396}
   - component: {fileID: 95318395}
+  - component: {fileID: 95318398}
+  - component: {fileID: 95318397}
   m_Layer: 0
   m_Name: Speaker
   m_TagString: Untagged
@@ -680,6 +682,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &95318397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95318393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logLevel: 1
+  recorderInUse: {fileID: 5126644867788824958}
+  speakerInUse: {fileID: 95318395}
+  AutoCreateRecorderIfNotFound: 0
+  UsePrimaryRecorder: 0
+  SetupDebugSpeaker: 0
+--- !u!114 &95318398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95318393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &104598469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15838,24 +15880,6 @@ MonoBehaviour:
   recordOnlyWhenEnabled: 0
   skipDeviceChangeChecks: 0
   stopRecordingWhenPaused: 0
---- !u!114 &5126644867788824960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5126644867788824957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logLevel: 1
-  recorderInUse: {fileID: 5126644867788824958}
-  speakerInUse: {fileID: 95318395}
-  AutoCreateRecorderIfNotFound: 1
-  UsePrimaryRecorder: 0
-  SetupDebugSpeaker: 0
 --- !u!1001 &7545358388142354962
 PrefabInstance:
   m_ObjectHideFlags: 0
