@@ -15710,7 +15710,7 @@ MonoBehaviour:
   logLevel: 1
   recorderInUse: {fileID: 5126644867788824958}
   speakerInUse: {fileID: 5126644867788824960}
-  AutoCreateRecorderIfNotFound: 0
+  AutoCreateRecorderIfNotFound: 1
   UsePrimaryRecorder: 0
   SetupDebugSpeaker: 0
 --- !u!114 &5126644867788824960
