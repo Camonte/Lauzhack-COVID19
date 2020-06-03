@@ -30,7 +30,7 @@ namespace DesktopProject
         {
             animator = GetComponent<Animator>();
             controller = GetComponent<CharacterController>();
-            transform.position = new Vector3(0, 0, 0);
+            controller.Move(new Vector3(0, 0, 0));
             if (!animator)
             {
                 Debug.LogError("PlayerAnimatorManager is Missing Animator Component", this);
