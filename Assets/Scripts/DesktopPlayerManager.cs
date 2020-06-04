@@ -35,8 +35,9 @@ namespace DesktopProject
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = this.gameObject;
+                var enumerator = Recorder.PhotonMicrophoneEnumerator;
                 Recorder recorder = this.GetComponent<Recorder>();
-                recorder.PhotonMicrophoneDeviceId = 0;
+                recorder.PhotonMicrophoneDeviceId = enumerator.IDAtIndex(0);
                 /**SkinnedMeshRenderer m = mesh.GetComponent<SkinnedMeshRenderer>();
                 m.enabled = false;**/
             }
