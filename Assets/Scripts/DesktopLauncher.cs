@@ -63,6 +63,10 @@ namespace DesktopProject
         {
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
+            foreach (var device in Microphone.devices)
+            {
+                Debug.Log("Name: " + device);
+            }
         }
 
         #endregion

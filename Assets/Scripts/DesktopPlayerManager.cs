@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 
 using Photon.Pun;
+using Photon.Voice.Unity;
 
 using System.Collections;
 
@@ -34,6 +35,8 @@ namespace DesktopProject
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = this.gameObject;
+                Recorder recorder = this.GetComponent<Recorder>();
+                recorder.PhotonMicrophoneDeviceId = 0;
                 /**SkinnedMeshRenderer m = mesh.GetComponent<SkinnedMeshRenderer>();
                 m.enabled = false;**/
             }

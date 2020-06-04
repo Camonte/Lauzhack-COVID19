@@ -15603,9 +15603,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2494145146120856168, guid: 5e068b5735ccb41b0bc03c78bdbef1cd,
+        type: 3}
+      propertyPath: SetupDebugSpeaker
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2494145146120856169, guid: 5e068b5735ccb41b0bc03c78bdbef1cd,
         type: 3}
       propertyPath: microphoneType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494145146120856169, guid: 5e068b5735ccb41b0bc03c78bdbef1cd,
+        type: 3}
+      propertyPath: reliableMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494145146120856169, guid: 5e068b5735ccb41b0bc03c78bdbef1cd,
+        type: 3}
+      propertyPath: debugEchoMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2494145146120856170, guid: 5e068b5735ccb41b0bc03c78bdbef1cd,
