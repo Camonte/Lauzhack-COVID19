@@ -16,11 +16,6 @@ namespace DesktopProject
         #region Public Fields
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
-        public GameObject rig;
-        public Material material1;
-        public Material material2;
-        public Material material3;
-        public Material material4;
         #endregion
 
 
@@ -61,23 +56,6 @@ namespace DesktopProject
             #if UNITY_5_4_OR_NEWER
                 UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
             #endif
-            switch(PhotonNetwork.CurrentRoom.PlayerCount){
-                case 1:
-                    rig.GetComponent<Renderer>().material = material1;
-                    break;
-                case 2:
-                    rig.GetComponent<Renderer>().material = material2;
-                    break;
-                case 3:
-                    rig.GetComponent<Renderer>().material = material3;
-                    break;
-                case 4:
-                    rig.GetComponent<Renderer>().material = material4;
-                    break;
-                default:
-                    rig.GetComponent<Renderer>().material = material1;
-                    break;
-            }
         }
 
         public override void OnDisable()
