@@ -20,7 +20,7 @@ namespace DesktopProject
 
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
-        public GameObject PlayerUiPrefab;
+        public GameObject nameDisplay;
 
 
         #region MonoBehaviour CallBacks
@@ -37,7 +37,6 @@ namespace DesktopProject
                 var enumerator = Recorder.PhotonMicrophoneEnumerator;
                 Recorder recorder = this.GetComponent<Recorder>();
                 recorder.PhotonMicrophoneDeviceId = enumerator.IDAtIndex(0);
-                PlayerUiPrefab.GetComponent<DesktopPlayerUI>().SetTarget(this);
             }
         }
 
@@ -61,15 +60,10 @@ namespace DesktopProject
             #if UNITY_5_4_OR_NEWER
                 UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
             #endif
-            if (PlayerUiPrefab != null)
-            {
-                GameObject _uiGo =  Instantiate(PlayerUiPrefab);
-                _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
-            }
-            else
-            {
-                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
-            }
+            Debug.LogError(this.GetComponent<PhotonView>().Owner.NickName, this);
+            DesktopNameDisplay d = nameDisplay.GetComponent<DesktopNameDisplay>();
+            var nameValue = this.GetComponent<PhotonView>().Owner.NickName;
+            d.setText(nameValue);
         }
 
         public override void OnDisable()
@@ -100,8 +94,6 @@ namespace DesktopProject
             {
                 transform.position = new Vector3(0f, 5f, 0f);
             }
-            GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
         #endregion
 
