@@ -15620,6 +15620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: My MobileMaleFreeSimpleMovement1 1 1Indoor
       objectReference: {fileID: 0}
+    - target: {fileID: 2494145146120857537, guid: 5e068b5735ccb41b0bc03c78bdbef1cd,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[1].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2494145146120857542, guid: 5e068b5735ccb41b0bc03c78bdbef1cd,
         type: 3}
       propertyPath: viewIdField

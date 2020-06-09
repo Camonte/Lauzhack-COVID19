@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using DesktopProject;
+using Photon.Realtime;
+using Photon.Pun;
 
 public class SitOnHigh : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class SitOnHigh : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (player.GetComponent<PhotonView>().IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
         player.GetComponent<DesktopProject.DesktopPlayerAnimatorManager>().isSitting = true;
         isSitting = true;
         animator.SetTrigger("isSitting");
@@ -24,6 +30,10 @@ public class SitOnHigh : MonoBehaviour
 
     void Update()
     {
+        if (player.GetComponent<PhotonView>().IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
         if(isSitting)
         {
             controller.enabled = false;

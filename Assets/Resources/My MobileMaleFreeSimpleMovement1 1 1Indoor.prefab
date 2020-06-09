@@ -341,11 +341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95b9bc8966224915b13e044a2979d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionDampTime: 0.1
   sensitivityX: 15
-  sensitivityY: 15
-  minimumX: -360
-  maximumX: 360
+  isSitting: 0
 --- !u!114 &2494145146120857541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9812350dd6f834bffa7f0681c18bf598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerUiPrefab: {fileID: 0}
 --- !u!114 &528790047585650192
 MonoBehaviour:
   m_ObjectHideFlags: 0
