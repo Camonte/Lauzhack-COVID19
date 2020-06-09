@@ -16,7 +16,7 @@ namespace DesktopProject
 
         #region Public Fields
         public float sensitivityX = 15F;
-        public Transform destination;
+        //public Transform destination;
         #endregion
 
 
@@ -75,15 +75,16 @@ namespace DesktopProject
                 {
                     hit.collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
                     hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    hit.collider.gameObject.transform.position = destination.position;
-                    hit.collider.gameObject.transform.parent = GameObject.Find("Destination").transform;
+                    hit.collider.gameObject.transform.position = this.transform.position;
+                    hit.collider.gameObject.transform.parent = this.transform;
+                    hit.collider.gameObject.transform.position += new Vector3(0.0f, 2.0f, 0.0f);
                 }
             }
             if(Input.GetKeyDown("r")){
-                foreach(Transform child in destination){
-                    child.GetComponent<Rigidbody>().useGravity = true;
-                    child.GetComponent<Rigidbody>().isKinematic = false;
-                    child.transform.parent = null;
+                for(int i = 3; i < transform.childCount; i++){
+                    transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
+                    transform.GetChild(i).GetComponent<Rigidbody>().isKinematic = false;
+                    transform.GetChild(i).transform.parent = null;
                 }
                 //destination.DetachChildren();
             }
