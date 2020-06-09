@@ -11,17 +11,11 @@ namespace DesktopProject
         #region Private Fields
         private Animator animator;
         private CharacterController controller;
-        
-        [SerializeField]
-        private float directionDampTime = 0.1f;
         #endregion
 
         #region Public Fields
         public float sensitivityX = 15F;
-	    public float sensitivityY = 15F;
-
-	    public float minimumX = -360F;
-	    public float maximumX = 360F;
+	    public bool isSitting;
         #endregion
 
 
@@ -30,7 +24,6 @@ namespace DesktopProject
         {
             animator = GetComponent<Animator>();
             controller = GetComponent<CharacterController>();
-            //controller.Move(new Vector3(0, 0, 0));
             transform.position = new Vector3(0, 0, 0);
             if (!animator)
             {
@@ -49,35 +42,26 @@ namespace DesktopProject
             {
                 return;
             }
-            //float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
             if (v < 0)
             {
                 v = 0;
+            }
+            if(v > 0)
+            {
+                isSitting = false;
             }
             animator.SetFloat("Speed", v);
-            //animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
-
-            /**float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
-            if (v < 0)
-            {
-                v = 0;
-            }
-            animator.SetFloat("Speed", v*v);
-            animator.SetFloat("Direction", h);**/
         }
 
         void OnAnimatorMove()
         {
-            if (animator)
+            if (animator && !isSitting)
             {
-                /**Vector3 newPosition = transform.position;
-                newPosition += transform.forward;
-                newPosition.x += animator.GetFloat("Speed") * Time.deltaTime; 
-                newPosition.z += animator.GetFloat("Speed") * Time.deltaTime;**/
-                //transform.position += 5.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed");
+                controller.enabled = false;
+                this.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z);
+                controller.enabled = true;
                 controller.Move(5.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed"));
             }
         }

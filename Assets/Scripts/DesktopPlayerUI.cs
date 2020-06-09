@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-
 using System.Collections;
-
 
 namespace DesktopProject
 {
@@ -23,7 +21,7 @@ namespace DesktopProject
         Renderer targetRenderer;
 
         CanvasGroup _canvasGroup;
-
+        
         Vector3 targetPosition;
         #endregion
 
@@ -36,18 +34,19 @@ namespace DesktopProject
 
 
         #region MonoBehaviour Callbacks
-        void Awake()
+        void Update()
         {
-            this.transform.SetParent(GameObject.Find("Canvas").GetComponent<Transform>(), false);
-            _canvasGroup = this.GetComponent<CanvasGroup>();
-        }
-
-        void Update(){
             if (target == null)
             {
                 Destroy(this.gameObject);
                 return;
             }
+        }
+
+        void Awake()
+        {
+            this.transform.SetParent(GameObject.Find("Canvas").GetComponent<Transform>(), false);
+            _canvasGroup = this.GetComponent<CanvasGroup>();
         }
 
         void LateUpdate()
@@ -93,7 +92,5 @@ namespace DesktopProject
             }
         }
         #endregion
-
-
     }
 }

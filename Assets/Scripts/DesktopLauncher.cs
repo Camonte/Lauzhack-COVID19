@@ -25,7 +25,6 @@ namespace DesktopProject
 
         /// <summary>
         /// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon,
-        /// we need to keep track of this to properly adjust the behavior when we receive call back by Photon.
         /// Typically this is used for the OnConnectedToMaster() callback.
         /// </summary>
         bool isConnecting;
@@ -63,10 +62,6 @@ namespace DesktopProject
         {
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
-            foreach (var device in Microphone.devices)
-            {
-                Debug.Log("Name: " + device);
-            }
         }
 
         #endregion
@@ -86,8 +81,27 @@ namespace DesktopProject
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
+                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinFailed() and we'll create one.
                 PhotonNetwork.JoinRoom("OutdoorScene");
+            }
+            else
+            {
+                // #Critical, we must first and foremost connect to Photon Online Server.
+                isConnecting = PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.GameVersion = gameVersion;
+            }
+        }
+
+        public void ConnectToCustomOutdoor()
+        {
+            joinedRoom = "OutdoorSceneCustom";
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
+            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
+            if (PhotonNetwork.IsConnected)
+            {
+                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
+                PhotonNetwork.JoinRoom("OutdoorSceneCustom");
             }
             else
             {
@@ -147,16 +161,16 @@ namespace DesktopProject
         public override void OnJoinedRoom()
         {
             Debug.Log("DesktopLauncher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-            /**if(PhotonNetwork.CurrentRoom.PlayerCount == 1) // WARNING HERE : DEBUG FEATURE
-            {**/
             if(joinedRoom == "OutdoorScene"){
                 Debug.Log("We load the OutdoorScene");
                 PhotonNetwork.LoadLevel("OutdoorScene");
             } else if (joinedRoom == "MainSceneDesktop"){
                 Debug.Log("We load the MainSceneDesktop");
                 PhotonNetwork.LoadLevel("MainSceneDesktop");
+            } else if (joinedRoom == "OutdoorSceneCustom"){
+                Debug.Log("We load the OutdooSceneCustom");
+                PhotonNetwork.LoadLevel("OutdoorSceneCustom");
             }
-            //}
         }
         #endregion
     }

@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OutdoorScene.unity
     guid: 34a1b87a2209e43f791006446d5e8f43
+  - enabled: 1
+    path: Assets/Scenes/OutdoorSceneCustom.unity
+    guid: 46bbda4acc79540b487d4b6f1a9ff299
   m_configObjects: {}

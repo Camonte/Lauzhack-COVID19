@@ -18,10 +18,9 @@ namespace DesktopProject
         public static GameObject LocalPlayerInstance;
         #endregion
 
-        /**#region Private Fields
+        [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
-        private GameObject mesh;
-        #endregion**/
+        public GameObject PlayerUiPrefab;
 
 
         #region MonoBehaviour CallBacks
@@ -38,12 +37,8 @@ namespace DesktopProject
                 var enumerator = Recorder.PhotonMicrophoneEnumerator;
                 Recorder recorder = this.GetComponent<Recorder>();
                 recorder.PhotonMicrophoneDeviceId = enumerator.IDAtIndex(0);
-                /**SkinnedMeshRenderer m = mesh.GetComponent<SkinnedMeshRenderer>();
-                m.enabled = false;**/
+                PlayerUiPrefab.GetComponent<DesktopPlayerUI>().SetTarget(this);
             }
-            // #Critical
-            // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-            //DontDestroyOnLoad(this.gameObject);
         }
 
         /// <summary>
@@ -66,6 +61,15 @@ namespace DesktopProject
             #if UNITY_5_4_OR_NEWER
                 UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
             #endif
+            if (PlayerUiPrefab != null)
+            {
+                GameObject _uiGo =  Instantiate(PlayerUiPrefab);
+                _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
+            }
+            else
+            {
+                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
+            }
         }
 
         public override void OnDisable()
@@ -96,6 +100,8 @@ namespace DesktopProject
             {
                 transform.position = new Vector3(0f, 5f, 0f);
             }
+            GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
         #endregion
 
