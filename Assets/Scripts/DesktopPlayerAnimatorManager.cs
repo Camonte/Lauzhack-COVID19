@@ -16,6 +16,8 @@ namespace DesktopProject
         #region Public Fields
         public float sensitivityX = 15F;
         public bool isSitting = false;
+        public bool shouldSit = false;
+        public Vector3 sitPosition;
         #endregion
 
 
@@ -53,6 +55,16 @@ namespace DesktopProject
             }
             animator.SetFloat("Speed", v);
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+            if(shouldSit)
+            {
+                isSitting = true;
+                animator.SetTrigger("isSitting");
+                controller.enabled = false;
+                this.transform.position = sitPosition;
+                controller.enabled = true;
+                controller.transform.position += new Vector3(0, 1.0f, 0);
+                shouldSit = false;
+            }
         }
 
         void OnAnimatorMove()
