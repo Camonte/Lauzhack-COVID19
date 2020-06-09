@@ -11,12 +11,11 @@ namespace DesktopProject
         #region Private Fields
         private Animator animator;
         private CharacterController controller;
+        private bool isSitting = false;
         #endregion
 
         #region Public Fields
         public float sensitivityX = 15F;
-        public bool isSitting = false;
-        public bool shouldSit = false;
         #endregion
 
 
@@ -30,6 +29,7 @@ namespace DesktopProject
             {
                 Debug.LogError("PlayerAnimatorManager is Missing Animator Component", this);
             }
+            animator.SetFloat("isSitting", 0.0f);
         }
 
         // Update is called once per frame
@@ -53,7 +53,7 @@ namespace DesktopProject
             if (Input.GetKeyDown("space"))
             {
                 isSitting = false;
-                animator.SetBool("isSitting", false);
+                animator.SetFloat("isSitting", 0.0f);
                 //controller.enabled = false;
                 controller.transform.position = new Vector3(0, 0, 0);
                 this.transform.position = new Vector3(0, 0, 0);
@@ -85,7 +85,7 @@ namespace DesktopProject
         private void OnTriggerEnter(Collider other)
         {
             isSitting = true;
-            animator.SetBool("isSitting", true);
+            animator.SetFloat("isSitting", 1.0f);
             //controller.enabled = false;
             controller.transform.position = other.transform.position;
             //controller.enabled = true;
