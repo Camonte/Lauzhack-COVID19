@@ -13,9 +13,9 @@ public class SitOnHigh : MonoBehaviour
 
     void OnMouseDown()
     {
-        player.GetComponent<DesktopPlayerAnimatorManager>().shouldSit = true;
+        //player.GetComponent<DesktopPlayerAnimatorManager>().shouldSit = true;
         //player.GetComponent<DesktopPlayerAnimatorManager>().sitPosition = this.transform.position + new Vector3(0, 1.0f, 0);
-        player.GetComponent<DesktopPlayerAnimatorManager>().sitPosition = this.transform.position;
+        //player.GetComponent<DesktopPlayerAnimatorManager>().sitPosition = this.transform.position;
         /**if (player.GetComponent<PhotonView>().IsMine == false && PhotonNetwork.IsConnected == true)
         {
             return;

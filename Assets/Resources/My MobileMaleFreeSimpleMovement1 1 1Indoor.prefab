@@ -343,6 +343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivityX: 15
   isSitting: 0
+  shouldSit: 0
+  sitPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2494145146120857541
 MonoBehaviour:
   m_ObjectHideFlags: 0
