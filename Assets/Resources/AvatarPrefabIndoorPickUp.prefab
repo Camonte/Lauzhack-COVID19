@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 15
+  destination: {fileID: 0}
 --- !u!114 &3495774184234906059
 MonoBehaviour:
   m_ObjectHideFlags: 0

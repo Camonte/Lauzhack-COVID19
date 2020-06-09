@@ -16,6 +16,7 @@ namespace DesktopProject
 
         #region Public Fields
         public float sensitivityX = 15F;
+        public Transform destination;
         #endregion
 
 
@@ -59,16 +60,33 @@ namespace DesktopProject
                 this.transform.position = new Vector3(0, 0, 0);
                 //controller.enabled = true;
             }
-            /**if(shouldSit)
+            if(Input.GetKeyDown("e"))
             {
-                isSitting = true;
-                animator.SetTrigger("isSitting");
-                controller.enabled = false;
-                this.transform.position = sitPosition;
-                controller.enabled = true;
-                controller.transform.position += new Vector3(0, 1.0f, 0);
-                shouldSit = false;
-            }**/
+                // Bit shift the index of the layer (8) to get a bit mask
+                int layerMask = 1 << 8;
+
+                // This would cast rays only against colliders in layer 8.
+                // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+                //layerMask = ~layerMask;
+
+                RaycastHit hit;
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(transform.position + new Vector3(0f, 2.9f, 0f), transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+                {
+                    hit.collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                    hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                    hit.collider.gameObject.transform.position = destination.position;
+                    hit.collider.gameObject.transform.parent = GameObject.Find("Destination").transform;
+                }
+            }
+            if(Input.GetKeyDown("r")){
+                foreach(Transform child in destination){
+                    child.GetComponent<Rigidbody>().useGravity = true;
+                    child.GetComponent<Rigidbody>().isKinematic = false;
+                    child.transform.parent = null;
+                }
+                //destination.DetachChildren();
+            }
         }
 
         void OnAnimatorMove()

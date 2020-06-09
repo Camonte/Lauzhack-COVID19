@@ -1057,6 +1057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cup (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8332c80df391af54a8a915addc602803, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8332c80df391af54a8a915addc602803, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.640975
@@ -7242,19 +7246,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 150556910}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1061725796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061725795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da05cabb09d4a4a3abeb632bb3da197c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destination: {fileID: 1377805447}
 --- !u!64 &1061725797
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10114,19 +10105,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1957117281}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1326924363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326924362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da05cabb09d4a4a3abeb632bb3da197c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destination: {fileID: 1377805447}
 --- !u!64 &1326924364
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10542,12 +10520,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!4 &1377805447 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8621855894536401310, guid: 219506da7a60a4bfda39ba5d0b91365d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8621855893697107225}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1392045338 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5430531079792105777, guid: 436075b69cf4114439dddc06abf0567d,
@@ -12285,6 +12257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cup_filled (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 48daf1953d703084098600ea2faf53c3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 48daf1953d703084098600ea2faf53c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.45920086
@@ -13490,19 +13466,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1627431057}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1901355020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901355019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da05cabb09d4a4a3abeb632bb3da197c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destination: {fileID: 1377805447}
 --- !u!64 &1901355021
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13867,6 +13830,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d7df9829007739a4a9d09bed95734190, type: 3}
       propertyPath: m_Name
       value: wine_bottle_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7df9829007739a4a9d09bed95734190, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d7df9829007739a4a9d09bed95734190, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15791,6 +15758,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AvatarPrefabIndoorPickUp
       objectReference: {fileID: 0}
+    - target: {fileID: 3495774184234906764, guid: 219506da7a60a4bfda39ba5d0b91365d,
+        type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 8621855893697107226}
     - target: {fileID: 3495774184234907218, guid: 219506da7a60a4bfda39ba5d0b91365d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15848,3 +15820,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 219506da7a60a4bfda39ba5d0b91365d, type: 3}
+--- !u!4 &8621855893697107226 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8621855894536401310, guid: 219506da7a60a4bfda39ba5d0b91365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8621855893697107225}
+  m_PrefabAsset: {fileID: 0}
