@@ -43,22 +43,21 @@ namespace DesktopProject
             {
                 return;
             }
-            if(!isSitting){
-                float v = Input.GetAxis("Vertical");
-                if (v < 0)
-                {
-                    v = 0;
-                }
-                animator.SetFloat("Speed", v);
+            float v = Input.GetAxis("Vertical");
+            if (v < 0)
+            {
+                v = 0;
             }
+            animator.SetFloat("Speed", v);
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
             if (Input.GetKeyDown("space"))
             {
                 isSitting = false;
                 animator.SetBool("isSitting", false);
-                controller.enabled = false;
+                //controller.enabled = false;
+                controller.transform.position = new Vector3(0, 0, 0);
                 this.transform.position = new Vector3(0, 0, 0);
-                controller.enabled = true;
+                //controller.enabled = true;
             }
             /**if(shouldSit)
             {
@@ -76,9 +75,9 @@ namespace DesktopProject
         {
             if (animator && !isSitting)
             {
-                /**controller.enabled = false;
+                controller.enabled = false;
                 this.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z);
-                controller.enabled = true;**/
+                controller.enabled = true;
                 controller.Move(5.0f * transform.forward * Time.deltaTime * animator.GetFloat("Speed"));
             }
         }
@@ -87,9 +86,9 @@ namespace DesktopProject
         {
             isSitting = true;
             animator.SetBool("isSitting", true);
-            controller.enabled = false;
-            this.transform.position = other.transform.position;
-            controller.enabled = true;
+            //controller.enabled = false;
+            controller.transform.position = other.transform.position;
+            //controller.enabled = true;
             controller.transform.position += new Vector3(0, 1.0f, 0);
         }
         #endregion
