@@ -73,11 +73,20 @@ namespace DesktopProject
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(transform.position + new Vector3(0f, 2.9f, 0f), transform.TransformDirection(Vector3.forward), out hit, 3, layerMask))
                 {
-                    hit.collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
-                    hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    //hit.collider.gameObject.transform.position = this.transform.position;
-                    hit.collider.gameObject.transform.parent = this.transform;
-                    //hit.collider.gameObject.transform.position += new Vector3(0.0f, 2.0f, 0.0f);
+                    if (hit.collider.gameObject.GetComponent<PhotonView>().Owner == PhotonNetwork.LocalPlayer)
+                    {
+                        hit.collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                        hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        hit.collider.gameObject.transform.parent = this.transform;
+
+                    }
+                    else
+                    {
+                        hit.collider.gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+                        hit.collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                        hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        hit.collider.gameObject.transform.parent = this.transform;
+                    }
                 }
             }
             if(Input.GetKeyDown("r")){
