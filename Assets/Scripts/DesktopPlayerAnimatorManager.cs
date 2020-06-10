@@ -71,13 +71,13 @@ namespace DesktopProject
 
                 RaycastHit hit;
                 // Does the ray intersect any objects excluding the player layer
-                if (Physics.Raycast(transform.position + new Vector3(0f, 2.9f, 0f), transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+                if (Physics.Raycast(transform.position + new Vector3(0f, 2.9f, 0f), transform.TransformDirection(Vector3.forward), out hit, 3, layerMask))
                 {
                     hit.collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
                     hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    hit.collider.gameObject.transform.position = this.transform.position;
+                    //hit.collider.gameObject.transform.position = this.transform.position;
                     hit.collider.gameObject.transform.parent = this.transform;
-                    hit.collider.gameObject.transform.position += new Vector3(0.0f, 2.0f, 0.0f);
+                    //hit.collider.gameObject.transform.position += new Vector3(0.0f, 2.0f, 0.0f);
                 }
             }
             if(Input.GetKeyDown("r")){
