@@ -81,7 +81,7 @@ namespace DesktopProject
         {
             if(PhotonNetwork.IsMasterClient)
             {
-                this.photonView.RPC("LeaveRoom", RpcTarget.All);
+                playerPrefab.GetComponent<PhotonView>().RPC("LeaveRoom", RpcTarget.All);
             }
             Debug.LogFormat("LeaveRoom method was called");
             PhotonNetwork.LeaveRoom();
