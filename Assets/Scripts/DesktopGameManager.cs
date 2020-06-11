@@ -76,8 +76,13 @@ namespace DesktopProject
 
 
         #region Public Methods
+        [PunRPC]
         public void LeaveRoom()
         {
+            if(PhotonNetwork.IsMasterClient)
+            {
+                this.photonView.RPC("LeaveRoom", RpcTarget.All);
+            }
             Debug.LogFormat("LeaveRoom method was called");
             PhotonNetwork.LeaveRoom();
         }

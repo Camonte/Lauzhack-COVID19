@@ -12,6 +12,7 @@ namespace DesktopProject
         private Animator animator;
         private CharacterController controller;
         private bool isSitting = false;
+        private int layerMask = 1 << 8;
         #endregion
 
         #region Public Fields
@@ -55,23 +56,14 @@ namespace DesktopProject
             {
                 isSitting = false;
                 animator.SetFloat("isSitting", 0.0f);
-                //controller.enabled = false;
                 controller.transform.position = new Vector3(0, 0, 0);
                 this.transform.position = new Vector3(0, 0, 0);
-                //controller.enabled = true;
             }
             if(Input.GetKeyDown("e"))
             {
-                // Bit shift the index of the layer (8) to get a bit mask
-                int layerMask = 1 << 8;
-
-                // This would cast rays only against colliders in layer 8.
-                // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-                //layerMask = ~layerMask;
-
                 RaycastHit hit;
                 // Does the ray intersect any objects excluding the player layer
-                if (Physics.Raycast(transform.position + new Vector3(0f, 2.9f, 0f), transform.TransformDirection(Vector3.forward), out hit, 3, layerMask))
+                if (Physics.Raycast(transform.position + new Vector3(0f, 2.9f, 0f), transform.TransformDirection(Vector3.forward), out hit, 5, layerMask))
                 {
                     if (hit.collider.gameObject.GetComponent<PhotonView>().Owner == PhotonNetwork.LocalPlayer)
                     {
@@ -90,12 +82,11 @@ namespace DesktopProject
                 }
             }
             if(Input.GetKeyDown("r")){
-                for(int i = 3; i < transform.childCount; i++){
+                for(int i = 2; i < transform.childCount; i++){
                     transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
                     transform.GetChild(i).GetComponent<Rigidbody>().isKinematic = false;
                     transform.GetChild(i).transform.parent = null;
                 }
-                //destination.DetachChildren();
             }
         }
 
@@ -114,9 +105,7 @@ namespace DesktopProject
         {
             isSitting = true;
             animator.SetFloat("isSitting", 1.0f);
-            //controller.enabled = false;
             controller.transform.position = other.transform.position;
-            //controller.enabled = true;
             controller.transform.position += new Vector3(0, 1.0f, 0);
         }
         #endregion

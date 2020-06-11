@@ -11,42 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainSceneDesktop.unity
     guid: 293375f8c7f684c4bb51c629140b2773
-  - enabled: 0
-    path: Assets/Scenes/Launcher.unity
-    guid: b37f7e59cfc195d46af1adc991e75174
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/espace de travail collectif.unity
-    guid: a77c00f0ed4483f4aa5203a204ba802a
-  - enabled: 0
-    path: Assets/Oculus/VR/Scenes/UI.unity
-    guid: 1f4d3ae64a10d434db219de8b14348e1
-  - enabled: 0
-    path: Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Scenes/DemoAsteroids-LobbyScene.unity
-    guid: c8a9d1312a49dc8488a9b32d83d659c7
-  - enabled: 0
-    path: Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Scenes/DemoAsteroids-GameScene.unity
-    guid: 98efc37d6307844488eb3e4247dde7e9
-  - enabled: 0
-    path: Assets/Scenes/LauncherTest.unity
-    guid: c63d4ae57f94d4068b4940a86e2579ef
-  - enabled: 0
-    path: Assets/Scenes/KyleTest.unity
-    guid: bdc7e5983e8df4a469979ed0cae28dcd
-  - enabled: 0
-    path: Assets/Scenes/MainSceneTest.unity
-    guid: 609e4b72fd2ea43f6816561de61660d4
-  - enabled: 0
-    path: Assets/Scenes/MainScene.unity
-    guid: 3b825f9a74e2445cc9d70042b6ea5ac2
-  - enabled: 0
-    path: Assets/Oculus/VR/Scenes/Room.unity
-    guid: 54445976c1dbf1c49bb38ba7eba558e8
   - enabled: 1
     path: Assets/Scenes/OutdoorScene.unity
     guid: 34a1b87a2209e43f791006446d5e8f43
+  - enabled: 1
+    path: Assets/Scenes/OutdoorScene1.unity
+    guid: 05e00e7b7b67a42619d19d796c2fee0d
+  - enabled: 1
+    path: Assets/Scenes/OutdoorScene2.unity
+    guid: 38a6080fbd6a94277a58328a5ae866a8
   - enabled: 1
     path: Assets/Scenes/OutdoorSceneCustom.unity
     guid: 46bbda4acc79540b487d4b6f1a9ff299
