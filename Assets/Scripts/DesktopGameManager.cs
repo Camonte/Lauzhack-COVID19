@@ -86,6 +86,11 @@ namespace DesktopProject
             Debug.LogFormat("LeaveRoom method was called");
             PhotonNetwork.LeaveRoom();
         }
+
+        public void LeaveRoomOnRPC(){
+            Debug.LogFormat("LeaveRoom method was called");
+            PhotonNetwork.LeaveRoom();
+        }
         #endregion
 
 

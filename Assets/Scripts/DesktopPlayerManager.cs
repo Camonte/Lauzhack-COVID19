@@ -112,7 +112,7 @@ namespace DesktopProject
         [PunRPC]
         public void LeaveRoom()
         {
-            GameManager.GetComponent<DesktopGameManager>().LeaveRoom();
+            GameManager.GetComponent<DesktopGameManager>().LeaveRoomOnRPC();
         }
         #endregion
     }
