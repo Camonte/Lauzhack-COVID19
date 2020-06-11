@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 
 using Photon.Pun;
+using Photon.Realtime;
 using Photon.Voice.Unity;
 
 using System.Collections;
@@ -16,6 +17,8 @@ namespace DesktopProject
         #region Public Fields
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
+
+        public GameObject GameManager;
         #endregion
 
 
@@ -102,6 +105,14 @@ namespace DesktopProject
         #region IPunObservable implementation
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
+        }
+        #endregion
+
+        #region Public Methods
+        [PunRPC]
+        public void LeaveRoom()
+        {
+            GameManager.GetComponent<DesktopGameManager>().LeaveRoom();
         }
         #endregion
     }

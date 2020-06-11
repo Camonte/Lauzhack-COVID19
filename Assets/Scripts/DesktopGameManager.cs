@@ -76,12 +76,12 @@ namespace DesktopProject
 
 
         #region Public Methods
-        [PunRPC]
         public void LeaveRoom()
         {
             if(PhotonNetwork.IsMasterClient)
             {
                 playerPrefab.GetComponent<PhotonView>().RPC("LeaveRoom", RpcTarget.All);
+                //playerPrefab.GetComponent<DesktopPlayerManager>().LeaveRoom();
             }
             Debug.LogFormat("LeaveRoom method was called");
             PhotonNetwork.LeaveRoom();

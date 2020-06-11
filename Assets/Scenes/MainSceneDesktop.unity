@@ -15163,7 +15163,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2850050849217286964}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2850050849217286965}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acef6d25daf3947f9bcc59f108e179c6, type: 3}
@@ -16226,6 +16226,12 @@ PrefabInstance:
       objectReference: {fileID: 5126644867788824957}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5d216f99d2894d4b9edfc5dd536a0a8, type: 3}
+--- !u!1 &2850050849217286965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2850050849954442946, guid: f5d216f99d2894d4b9edfc5dd536a0a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2850050849217286964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5126644867788824957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3495774184234906724, guid: 219506da7a60a4bfda39ba5d0b91365d,
@@ -16368,6 +16374,11 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3495774184234906057, guid: 219506da7a60a4bfda39ba5d0b91365d,
+        type: 3}
+      propertyPath: GameManager
+      value: 
+      objectReference: {fileID: 2850050849217286965}
     - target: {fileID: 3495774184234906724, guid: 219506da7a60a4bfda39ba5d0b91365d,
         type: 3}
       propertyPath: m_Name
@@ -16377,7 +16388,7 @@ PrefabInstance:
         type: 3}
       propertyPath: destination
       value: 
-      objectReference: {fileID: 8621855893697107226}
+      objectReference: {fileID: 0}
     - target: {fileID: 3495774184234907218, guid: 219506da7a60a4bfda39ba5d0b91365d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16435,9 +16446,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 219506da7a60a4bfda39ba5d0b91365d, type: 3}
---- !u!4 &8621855893697107226 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8621855894536401310, guid: 219506da7a60a4bfda39ba5d0b91365d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8621855893697107225}
-  m_PrefabAsset: {fileID: 0}
