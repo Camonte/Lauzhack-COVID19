@@ -28,8 +28,6 @@ namespace DesktopProject
         /// </summary>
         void Awake()
         {
-            // #Important
-            // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = this.gameObject;

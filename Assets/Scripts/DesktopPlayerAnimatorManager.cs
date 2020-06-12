@@ -17,7 +17,6 @@ namespace DesktopProject
 
         #region Public Fields
         public float sensitivityX = 15F;
-        //public Transform destination;
         #endregion
 
 

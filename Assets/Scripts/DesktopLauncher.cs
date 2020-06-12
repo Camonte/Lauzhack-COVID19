@@ -9,9 +9,8 @@ namespace DesktopProject
     {
         #region Private Serializable Fields
         /// <summary>
-        /// The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created.
+        /// The maximum number of players per room
         /// </summary>
-        [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
         [SerializeField]
         private byte maxPlayersPerRoom = 4;
         #endregion
@@ -34,7 +33,7 @@ namespace DesktopProject
 
 
         #region Public Fields
-        [Tooltip("The Ui Panel to let the user enter name, connect and play")]
+        [Tooltip("The UI Panel to let the user enter name, connect and play")]
         [SerializeField]
         private GameObject controlPanel;
 
@@ -50,7 +49,6 @@ namespace DesktopProject
         /// </summary>
         void Awake()
         {
-            // #Critical
             // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
             PhotonNetwork.AutomaticallySyncScene = true;
         }
@@ -81,12 +79,12 @@ namespace DesktopProject
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinFailed() and we'll create one.
+                // we need at this point to attempt joining a Room. If it fails, we'll get notified in OnJoinFailed() and we'll create one.
                 PhotonNetwork.JoinRoom("OutdoorScene");
             }
             else
             {
-                // #Critical, we must first and foremost connect to Photon Online Server.
+                // we must first and foremost connect to Photon Online Server.
                 isConnecting = PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.GameVersion = gameVersion;
             }
@@ -97,15 +95,12 @@ namespace DesktopProject
             joinedRoom = "OutdoorScene1";
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
-            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinFailed() and we'll create one.
                 PhotonNetwork.JoinRoom("OutdoorScene1");
             }
             else
             {
-                // #Critical, we must first and foremost connect to Photon Online Server.
                 isConnecting = PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.GameVersion = gameVersion;
             }
@@ -116,15 +111,12 @@ namespace DesktopProject
             joinedRoom = "OutdoorScene2";
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
-            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinFailed() and we'll create one.
                 PhotonNetwork.JoinRoom("OutdoorScene2");
             }
             else
             {
-                // #Critical, we must first and foremost connect to Photon Online Server.
                 isConnecting = PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.GameVersion = gameVersion;
             }
@@ -135,15 +127,12 @@ namespace DesktopProject
             joinedRoom = "OutdoorSceneCustom";
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
-            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
                 PhotonNetwork.JoinRoom("OutdoorSceneCustom");
             }
             else
             {
-                // #Critical, we must first and foremost connect to Photon Online Server.
                 isConnecting = PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.GameVersion = gameVersion;
             }
@@ -151,18 +140,15 @@ namespace DesktopProject
 
         public void ConnectToIndoor()
         {
-            joinedRoom = "MainSceneDesktop";
+            joinedRoom = "IndoorScene";
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
-            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
-                PhotonNetwork.JoinRoom("MainSceneDesktop");
+                PhotonNetwork.JoinRoom("IndoorScene");
             }
             else
             {
-                // #Critical, we must first and foremost connect to Photon Online Server.
                 isConnecting = PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.GameVersion = gameVersion;
             }
@@ -175,7 +161,7 @@ namespace DesktopProject
         {
             Debug.Log("DesktopLauncher: OnConnectedToMaster() was called by PUN");
             if(isConnecting){
-                // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
+                // The first time we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRoomFailed()
                 PhotonNetwork.JoinRoom(joinedRoom);
                 isConnecting = false;
             }
@@ -192,7 +178,7 @@ namespace DesktopProject
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
             Debug.Log("DesktopLauncher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
-            // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
+            // we failed to join a room: we create a new room.
             PhotonNetwork.CreateRoom(joinedRoom, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
 
@@ -200,16 +186,6 @@ namespace DesktopProject
         {
             Debug.Log("DesktopLauncher: OnJoinedRoom() called by PUN. Now this client is in a room.");
             PhotonNetwork.LoadLevel(joinedRoom);
-            /**if(joinedRoom == "OutdoorScene"){
-                Debug.Log("We load the OutdoorScene");
-                PhotonNetwork.LoadLevel("OutdoorScene");
-            } else if (joinedRoom == "MainSceneDesktop"){
-                Debug.Log("We load the MainSceneDesktop");
-                PhotonNetwork.LoadLevel("MainSceneDesktop");
-            } else if (joinedRoom == "OutdoorSceneCustom"){
-                Debug.Log("We load the OutdooSceneCustom");
-                PhotonNetwork.LoadLevel("OutdoorSceneCustom");
-            }**/
         }
         #endregion
     }

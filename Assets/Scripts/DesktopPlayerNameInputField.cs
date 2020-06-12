@@ -18,7 +18,6 @@ namespace DesktopProject
     public class DesktopPlayerNameInputField : MonoBehaviour
     {
         #region Private Constants
-        // Store the PlayerPref Key to avoid typos
         const string playerNamePrefKey = "PlayerName";
         #endregion
 
